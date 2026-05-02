@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function Home() {
     const [openVideo, setOpenVideo] = useState(false);
     const navigate = useNavigate();
+    const [showMsg, setShowMsg] = useState(false);
   return (
     <div className="min-h-screen bg-orange-50">
 
@@ -92,17 +93,57 @@ export default function Home() {
           Join thousands of students learning smarter 🚀
         </p>
 
-        <motion.button
-          whileHover={{ scale: 1.1 }}
-          className="mt-6 bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold"
-        >
-          Get Started
-        </motion.button>
+       <motion.button
+  whileHover={{ scale: 1.1 }}
+  onClick={() => setShowMsg(true)}
+  className="mt-6 bg-white text-orange-600 px-8 py-3 rounded-lg font-semibold"
+>
+  Get Started
+</motion.button>
       </div>
 <VideoModal
   isOpen={openVideo}
   onClose={() => setOpenVideo(false)}
 />
+{showMsg && (
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+
+    {/* Overlay */}
+    <div
+      className="absolute inset-0 bg-black/60"
+      onClick={() => setShowMsg(false)}
+    ></div>
+
+    {/* Popup */}
+    <motion.div
+      initial={{ scale: 0.7, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      className="bg-white p-6 rounded-xl shadow-xl z-10 text-center w-[90%] md:w-[400px]"
+    >
+      <h2 className="text-xl font-bold text-orange-600">
+        🚧 Under Construction
+      </h2>
+
+      <p className="mt-4 text-gray-600">
+        This site is currently under construction.
+        <br />
+        For more information, contact:
+      </p>
+
+      <p className="mt-2 font-semibold text-lg">
+        📞 7003981397
+      </p>
+
+      <button
+        onClick={() => setShowMsg(false)}
+        className="mt-6 bg-orange-500 text-white px-6 py-2 rounded"
+      >
+        Close
+      </button>
+    </motion.div>
+
+  </div>
+)}
     </div>
     
   );

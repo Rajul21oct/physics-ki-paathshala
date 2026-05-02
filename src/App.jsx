@@ -1,4 +1,3 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
@@ -6,10 +5,11 @@ import Login from "./pages/Login";
 import CourseDetails from "./pages/CourseDetails";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Signup from "./pages/Signup";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
 
         {/* Public Route */}
@@ -49,7 +49,7 @@ function App() {
         />
 <Route path="/signup" element={<Signup />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
