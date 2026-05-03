@@ -22,21 +22,20 @@ export default function Login() {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      const res = await loginUser(form.email, form.password);
+  try {
+    const res = await loginUser(form.email, form.password);
 
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("user", JSON.stringify(res.user));
+    localStorage.setItem("token", res.token);
+    localStorage.setItem("user", JSON.stringify(res));
 
-      navigate(from); // ✅ correct redirect
-
-    } catch (err) {
-      alert(err);
-    }
-  };
+    navigate(from); // already handled
+  } catch (err) {
+    alert(err.response?.data || err.message);
+  }
+};
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
